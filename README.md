@@ -14,7 +14,7 @@
 - has_many :room_users
 - has_many :rooms, through: room_users
 - has_many :messages
-- has_one  :card
+- has_one  :card, dependent: :destroy
 - has_many :records
 
 
@@ -28,7 +28,7 @@
 
 ### Association
 
-- belongs_to :user
+- belongs_to :user, optional: true
 
 
 ## rooms テーブル
