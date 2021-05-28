@@ -23,9 +23,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create_card
     @user = User.new(session["devise.regist_data"]["user"])
     card_data
-     unless @card.valid?
-       render :new_card and return
-     end
+    #  unless @card.valid?
+    #    render :new_card and return
+    #  end
     @user.build_card(@card.attributes)
     if @user.save
       session["devise.regist_data"]["user"].clear
