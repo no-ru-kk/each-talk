@@ -39,16 +39,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
   private
 
   def card_data
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"] # 環境変数を読み込む
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"] 
     customer = Payjp::Customer.create(
-    description: 'test', # テストカードであることを説明
-    card: params[:card_token] # 登録しようとしているカード情報
+    description: 'test', 
+    card: params[:card_token] 
     )
 
-    @card = Card.new( # トークン化されたカード情報を保存する
-      card_token: customer.default_card, # カードトークン
-      customer_token: customer.id, # 顧客トークン
-      user_id: @user.id # ログインしているユーザー
+    @card = Card.new( 
+      card_token: customer.default_card, 
+      customer_token: customer.id, 
+      user_id: @user.id 
     )
   end
 
