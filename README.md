@@ -33,12 +33,14 @@
 
 ## rooms テーブル
 
-| Column  | Type    | Options     |
-| ------- | ------- | ----------- |
-| image   |         |             |
-| name    | string  | null: false |
-| time_id | integer | null: false |
-| price   | integer | null: false |
+| Column   | Type       | Options                        |
+| -------- | ---------- | ------------------------------ |
+| image    |            |                                |
+| name     | string     | null: false                    |
+| explain  | text       | null: false                    |
+| rtime_id | integer    | null: false                    |
+| price    | integer    | null: false                    |
+| user     | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -46,7 +48,8 @@ extend ActiveHash::Associations::ActiveRecordExtensions
 - has_many :room_users
 - has_many :users, through: room_users
 - has_many :messages
-- belongs_to :time
+- has_one_attached :image
+- belongs_to :rtime
 
 
 ## room_users テーブル
@@ -89,7 +92,7 @@ extend ActiveHash::Associations::ActiveRecordExtensions
 - belongs_to :room
 
 
-## time テーブル
+## rtime テーブル
 
 ### Association
 include ActiveHash::Associations
