@@ -29,8 +29,7 @@
 
       <% @room.each do |room| %>
         <li class='list'>
-          <%= link_to "" do %>
-          <%# <%= link_to item_path(item.id) do %>
+          <%= link_to room_path(room.id) do %>
           <% if room.image.attached? %>
           <div class='item-img-content'>
             <%= image_tag room.image, class: "item-img" %>

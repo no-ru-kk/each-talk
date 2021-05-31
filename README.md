@@ -33,14 +33,17 @@
 
 ## rooms テーブル
 
-| Column   | Type       | Options                        |
-| -------- | ---------- | ------------------------------ |
-| image    |            |                                |
-| name     | string     | null: false                    |
-| explain  | text       | null: false                    |
-| rtime_id | integer    | null: false                    |
-| price    | integer    | null: false                    |
-| user     | references | null: false, foreign_key: true |
+| Column    | Type       | Options                        |
+| --------- | ---------- | ------------------------------ |
+| image     |            |                                |
+| name      | string     | null: false                    |
+| explain   | text       | null: false                    |
+| dayotw_id | integer    | null: false                    |
+| rtime_id  | integer    | null: false                    |
+| htime_id  | integer    | null: false                    |
+| mtime_id  | integer    | null: false                    |
+| price     | integer    | null: false                    |
+| user      | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -48,8 +51,11 @@ extend ActiveHash::Associations::ActiveRecordExtensions
 - has_many :room_users
 - has_many :users, through: room_users
 - has_many :messages
-- has_one_attached :image
+- belongs_to :dayotw
 - belongs_to :rtime
+- belongs_to :htime
+- belongs_to :mtime
+- has_one_attached :image
 
 
 ## room_users テーブル
@@ -92,7 +98,28 @@ extend ActiveHash::Associations::ActiveRecordExtensions
 - belongs_to :room
 
 
+## dayotw テーブル
+
+### Association
+include ActiveHash::Associations
+- has_many :rooms
+
+
 ## rtime テーブル
+
+### Association
+include ActiveHash::Associations
+- has_many :rooms
+
+
+## htime テーブル
+
+### Association
+include ActiveHash::Associations
+- has_many :rooms
+
+
+## mtime テーブル
 
 ### Association
 include ActiveHash::Associations
