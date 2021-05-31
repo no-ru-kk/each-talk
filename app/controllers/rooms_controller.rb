@@ -1,6 +1,7 @@
 class RoomsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_room,           only: [:show, :edit, :update, :destroy]
+  before_action :set_room,           only:   [:show, :edit, :update, :destroy]
+  before_action :judge_user,         only:   [:edit, :update, :destroy]
 
   def index
     @room = Room.includes(:user).order("created_at DESC")
@@ -22,6 +23,20 @@ class RoomsController < ApplicationController
   def show
   end
 
+  def edit
+  end
+
+  def update
+    if @room.update(room_params)
+      redirect_to room_path(@room.id)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+  end
+
   private
 
   def room_params
@@ -30,5 +45,12 @@ class RoomsController < ApplicationController
 
   def set_room
     @room = Room.find(params[:id])
+  end
+
+  def judge_user
+    unless current_user.id == @room.user_id
+    # unless current_user.id == @room.user_id && @room.order == nil
+      redirect_to action: :index
+    end
   end
 end
