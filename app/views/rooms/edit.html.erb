@@ -1,0 +1,125 @@
+<div class="items-sell-contents">
+  <header class="items-sell-header">
+    <%= link_to image_tag('furima-logo-color.png' , size: '185x50'), "/" %>
+
+  </header>
+  <div class="items-sell-main">
+    <h2 class="items-sell-title">ルームの情報を入力</h2>
+    <%= form_with model: @room, local: true do |f| %>
+
+    <%= render 'shared/error_messages', model: f.object %>
+
+    <div class="img-upload">
+      <div class="weight-bold-text">
+        イメージ画像
+      </div>
+      <div class="click-upload">
+        <p>
+          クリックしてファイルをアップロード
+        </p>
+        <%= f.file_field :image, id:"item-image" %>
+      </div>
+    </div>
+    <div class="new-items">
+      <div class="weight-bold-text">
+        ルーム名
+        <span class="indispensable">必須</span>
+      </div>
+      <%= f.text_area :name, class:"items-text", id:"item-name", placeholder:"ルーム名（必須 40文字まで)", maxlength:"40" %>
+      <div class="items-explain">
+        <div class="weight-bold-text">
+          ルームの紹介
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.text_area :rexplain, class:"items-text", id:"item-info", placeholder:"ルームの説明（必須 1,000文字まで）（話しを聞くのに重要にしていることなど）例）変な返しをせず聞くことを大前提としています。" ,rows:"4" ,maxlength:"1000" %>
+      </div>
+    </div>
+    <%# /商品名と商品説明 %>
+
+    <%# 商品の詳細 %>
+    <div class="items-detail">
+      <div class="weight-bold-text">ルームの詳細</div>
+      <div class="form">
+        <div class="weight-bold-text">
+          トーク可能日
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.collection_select(:dayotw_id, Dayotw.all, :id, :name, {}, {class:"select-box", id:"room-time"}) %>
+         <div class="weight-bold-text">
+          トーク時間
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.collection_select(:rtime_id, Rtime.all, :id, :name, {}, {class:"select-box", id:"room-time"}) %>
+      </div>
+    </div>
+    <div class="form">
+      <div class='weight-bold-text'>
+        <label class="form-text">希望開始時間</label>
+        <span class="indispensable">必須</span>
+      </div>
+      <div class='input-name-wrap'>
+        <%= f.collection_select(:htime_id, Htime.all, :id, :name, {}, {class:"input-name", id:"h-time"}) %>
+        <%= f.collection_select(:mtime_id, Mtime.all, :id, :name, {}, {class:"input-name", id:"m-time"}) %>
+      </div>
+    </div>
+    <div>　　　</div>
+    <div>　　　</div>
+    <%# 販売価格 %>
+    <div class="sell-price">
+      <div class="weight-bold-text question-text">
+        <span>価格<br>(¥500〜10,000)</span>
+        <a class="question" href="#">?</a>
+      </div>
+      <div>
+        <div class="price-content">
+          <div class="price-text">
+            <span>価格</span>
+            <span class="indispensable">必須</span>
+          </div>
+          <span class="sell-yen">¥</span>
+          <%= f.text_field :price, class:"price-input", id:"room-price", placeholder:"例）500" %>
+        </div>
+        <div class="price-content">
+          <span>手数料 (10%)</span>
+          <span>
+            <span id='add-tax-price'></span>円
+          </span>
+        </div>
+        <div class="price-content">
+          <span>利益</span>
+          <span>
+            <span id='profit'></span>円
+        </div>
+        </span>
+      </div>
+    </div>
+    <%# /販売価格 %>
+
+    <%# 注意書き %>
+    <div class="caution">
+      <p class="sentence">
+        <a href="#">       </a>
+      </p>
+    </div>
+    <%# /注意書き %>
+    <%# 下部ボタン %>
+    <div class="sell-btn-contents">
+      <%= f.submit "作成する" ,class:"sell-btn" %>
+      <%=link_to 'もどる', root_path, class:"back-btn" %>
+    </div>
+    <%# /下部ボタン %>
+  </div>
+  <% end %>
+
+  <footer class="items-sell-footer">
+    <ul class="menu">
+      <li><a href="#">プライバシーポリシー</a></li>
+      <li><a href="#">フリマ利用規約</a></li>
+      <li><a href="#">特定商取引に関する表記</a></li>
+    </ul>
+    <%= link_to image_tag('furima-logo-color.png' , size: '185x50'), "/" %>
+    <p class="inc">
+      ©︎Furima,Inc.
+    </p>
+  </footer>
+</div>
