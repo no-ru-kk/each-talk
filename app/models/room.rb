@@ -8,6 +8,7 @@ class Room < ApplicationRecord
   belongs_to :rtime
   belongs_to :htime
   belongs_to :mtime
+  has_one    :room_order
   has_one_attached :image
 
   validates :name, :rexplain, presence: true, unless: :was_attached?

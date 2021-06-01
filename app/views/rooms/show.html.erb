@@ -11,22 +11,22 @@
     <div class="item-img-content">
       <%= image_tag @room.image ,class:"item-box-img" %>
 
-      <%# <% if @item.order != nil %>
+      <% if @room.room_order != nil %>
       <div class="sold-out">
         <span>Reserved!!</span>
       </div>
-      <%# <% end %>
+      <% end %>
       
     </div>
     <% else %>
     <div class='item-img-content'>
       <%= image_tag "3217149_s.jpg", class: "item-img" %>
 
-      <%# <% if @item.order != nil %>
+      <% if @room.room_order != nil %>
       <div class="sold-out">
         <span>Reserved!!</span>
       </div>
-      <%# <% end %>
+      <% end %>
 
     </div>
     <% end %>
@@ -35,21 +35,20 @@
     </div>
     <div class="item-price-box">
       <span class="item-price">
-        ¥<%= @room.price.to_s(:delimited) %>
+        <%= @room.rtime.name %>　¥<%= @room.price.to_s(:delimited) %>
       </span>
-      <span class="item-postage">
+      <%# <span class="item-postage">
          <%= @room.rtime.name %>
-      </span>
+      <%# </span> %>
     </div>
 
-    <%# if user_signed_in? && @room.order == nil %>
-    <% if user_signed_in? %>
+    <% if user_signed_in? && @room.room_order == nil %>
       <% if current_user.id == @room.user_id  %>
-        <%= link_to "商品の編集", edit_room_path(@room.id), method: :get, class: "item-red-btn" %>
+        <%= link_to "roomの編集", edit_room_path(@room.id), method: :get, class: "item-red-btn" %>
         <p class="or-text">or</p>
-        <%= link_to "削除", room_path(@room.id), method: :delete, class:"item-destroy" %>
+        <%= link_to "roomの削除", room_path(@room.id), method: :delete, class:"item-destroy" %>
       <% else %>
-        <%= link_to "購入画面に進む", "#" ,class:"item-red-btn"%>
+        <%= link_to "購入画面に進む", order_room_path(@room.id), method: :post, class:"item-red-btn"%>
        <% end %>
     <% end %>
 

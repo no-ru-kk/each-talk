@@ -7,6 +7,9 @@ Rails.application.routes.draw do
     post 'cards', to: 'users/registrations#create_card'
   end
   root 'rooms#index'
-  resources :rooms
   resources :users, only: [:show, :update]
+  resources :rooms
+  resources :rooms, only: :order do
+    post 'order', on: :member
+  end
 end
