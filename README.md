@@ -15,7 +15,7 @@
 - has_many :rooms, through: room_users
 - has_many :messages
 - has_one  :card, dependent: :destroy
-- has_many :records
+- has_many :room_orders
 
 
 ## cards テーブル
@@ -48,9 +48,10 @@
 ### Association
 
 extend ActiveHash::Associations::ActiveRecordExtensions
-- has_many :room_users
 - has_many :users, through: room_users
+- has_one  :room_order
 - has_many :messages
+- has_many :room_users
 - belongs_to :dayotw
 - belongs_to :rtime
 - belongs_to :htime
@@ -85,7 +86,7 @@ extend ActiveHash::Associations::ActiveRecordExtensions
 - belongs_to :user
 
 
-## records テーブル
+## room_orders テーブル
 
 | Column     | Type       | Options                        |
 | ---------- | ---------- | -------------------------------|

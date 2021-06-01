@@ -7,4 +7,5 @@ class User < ApplicationRecord
 
   has_one :card, dependent: :destroy
   has_many :rooms
+  has_many :room_orders
 end

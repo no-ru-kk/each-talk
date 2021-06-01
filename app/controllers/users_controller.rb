@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     card = Card.find_by(user_id: current_user.id)
 
-    redirect_to new_card_path and return unless card.present?
+    redirect_to new_user_registration_path and return unless card.present?
 
     customer = Payjp::Customer.retrieve(card.customer_token) 
     @card = customer.cards.first
@@ -22,6 +22,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :introduction, :email) # 編集出来る情報を制限
+    params.require(:user).permit(:name, :introduction, :email)
   end
 end
