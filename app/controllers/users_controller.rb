@@ -9,6 +9,8 @@ class UsersController < ApplicationController
 
     customer = Payjp::Customer.retrieve(card.customer_token) 
     @card = customer.cards.first
+    @room = Room.includes(:room_order).where(room_orders: {user_id: current_user.id} )
+    @eroom = Room.includes(:user).where(user_id: current_user.id ).order("created_at DESC")
   end
 
   def update
