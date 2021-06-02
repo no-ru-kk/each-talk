@@ -52,4 +52,91 @@
     <br>
     <%= link_to "トップページへ戻る", root_path %>
   </div>
+  <div>　　　</div>
+</div>
+<div class='item-contents'>
+  <div class="subtitle" >
+    購入したROOM
+  </div>
+  <ul class='item-lists'>
+    <% @room.each do |room| %>
+      <li class='list'>
+        <%= link_to "#" do %>
+
+        <% if room.image.attached? %>
+        <div class='item-img-content'>
+          <%= image_tag room.image, class: "item-img" %>
+            <h3 class='room-name'>
+              Room名：<%= room.name %>
+            </h3>
+        </div>
+        <% else %>
+        <div class='item-img-content'>
+          <%= image_tag "3217149_s.jpg", class: "item-img" %>
+            <h3 class='room-name'>
+              Room名：<%= room.name %>
+            </h3>
+        </div>
+        <% end %>
+
+        <div class='item-info'>
+          <h3 class='item-name'>
+            紹介：<%= room.rexplain %>
+          </h3>
+          <div class='item-price'>
+            <span><%= room.dayotw.name %>　<%= room.rtime.name %>　<%= room.htime.name %><%= room.mtime.name %></span>
+            <span><%= room.price.to_s(:delimited) %>円</span>
+            <div class='star-btn'>
+              <%= image_tag "star.png", class:"star-icon" %>
+              <span class='star-count'>0</span>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+<div class='sroom-contents'>
+  <div class="subtitle" >
+    出品したROOM
+  </div>
+  <ul class='sroom-lists'>
+    <% @eroom.each do |room| %>
+      <li class='slist'>
+        <%= link_to "#" do %>
+
+        <% if room.image.attached? %>
+        <div class='sroom-img-content'>
+          <%= image_tag room.image, class: "sroom-img" %>
+            <h3 class='room-name'>
+              Room名：<%= room.name %>
+            </h3>
+        </div>
+        <% else %>
+        <div class='sroom-img-content'>
+          <%= image_tag "3217149_s.jpg", class: "sroom-img" %>
+            <h3 class='room-name'>
+              Room名：<%= room.name %>
+            </h3>
+        </div>
+        <% end %>
+
+        <div class='sroom-info'>
+          <h3 class='sroom-name'>
+            紹介：<%= room.rexplain %>
+          </h3>
+          <div class='sroom-price'>
+            <span><%= room.dayotw.name %>　<%= room.rtime.name %>　<%= room.htime.name %><%= room.mtime.name %></span>
+            <span><%= room.price.to_s(:delimited) %>円</span>
+            <div class='star-btn'>
+              <%= image_tag "star.png", class:"star-icon" %>
+              <span class='star-count'>0</span>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
 </div>
