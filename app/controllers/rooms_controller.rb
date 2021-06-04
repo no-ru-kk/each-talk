@@ -44,6 +44,7 @@ class RoomsController < ApplicationController
     buy_room
 
     RoomOrder.create(user_id: current_user.id, room_id: params[:id],)
+    Troom.create(room_id: params[:id], user_ids: [current_user.id, @room.user_id])
 
     redirect_to user_path(current_user.id)
   end
@@ -70,7 +71,7 @@ class RoomsController < ApplicationController
     Payjp::Charge.create(
       amount: @room.price,
       customer: customer_token,
-      currency: 'jpy' 
+      currency: 'jpy'
     )
   end
 end

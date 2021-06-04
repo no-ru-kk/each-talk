@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   root 'rooms#index'
   resources :users, only: [:show, :update]
   resources :rooms
+  resources :trooms, only: [:destroy] do
+    resources :messages, only: [:index, :create]
+  end
   resources :rooms, only: :order do
     post 'order', on: :member
   end

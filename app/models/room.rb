@@ -1,9 +1,7 @@
 class Room < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
-  # has_many :room_users
-  # has_many :users, through: room_users
   belongs_to :user
-  # has_many :messages
+  has_one    :troom
   belongs_to :dayotw
   belongs_to :rtime
   belongs_to :htime
