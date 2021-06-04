@@ -5,7 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   validates :name, :introduction, presence: true
 
-  has_one :card, dependent: :destroy
   has_many :rooms
+  has_many :troom_users
+  has_many :trooms, through: :troom_users
+  has_one :card, dependent: :destroy
   has_many :room_orders
 end

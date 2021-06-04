@@ -11,8 +11,9 @@
 
 ### Association
 
+- has_many :rooms
 - has_many :room_users
-- has_many :rooms, through: room_users
+- has_many :trooms, through: troom_users
 - has_many :messages
 - has_one  :card, dependent: :destroy
 - has_many :room_orders
@@ -48,42 +49,14 @@
 ### Association
 
 extend ActiveHash::Associations::ActiveRecordExtensions
-- has_many :users, through: room_users
-- has_one  :room_order
-- has_many :messages
+- belongs_to :user
+- has_one  :troom
 - has_many :room_users
 - belongs_to :dayotw
 - belongs_to :rtime
 - belongs_to :htime
 - belongs_to :mtime
 - has_one_attached :image
-
-
-## room_users テーブル
-
-| Column | Type       | Options                        |
-| ------ | ---------- | ------------------------------ |
-| user   | references | null: false, foreign_key: true |
-| room   | references | null: false, foreign_key: true |
-
-### Association
-
-- belongs_to :room
-- belongs_to :user
-
-
-## messages テーブル
-
-| Column  | Type       | Options                        |
-| ------- | ---------- | ------------------------------ |
-| content | string     |                                |
-| user    | references | null: false, foreign_key: true |
-| room    | references | null: false, foreign_key: true |
-
-### Association
-
-- belongs_to :room
-- belongs_to :user
 
 
 ## room_orders テーブル
@@ -97,6 +70,48 @@ extend ActiveHash::Associations::ActiveRecordExtensions
 
 - belongs_to :user
 - belongs_to :room
+
+
+## trooms テーブル
+
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| room   | references | null: false, foreign_key: true |
+
+### Association
+
+- has_many :troom_users
+- has_many :users, through: troom_users
+- has_many :messages
+- belongs_to :room
+
+
+## messages テーブル
+
+| Column  | Type       | Options                        |
+| ------- | ---------- | ------------------------------ |
+| content | string     |                                |
+| troom   | references | null: false, foreign_key: true |
+| user    | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :troom
+- belongs_to :user
+- has_one_attached :image
+
+
+## troom_users テーブル
+
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| user   | references | null: false, foreign_key: true |
+| troom  | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :user
+- belongs_to :troom
 
 
 ## dayotw テーブル

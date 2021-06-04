@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_31_125654) do
+ActiveRecord::Schema.define(version: 2021_06_04_002927) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -42,6 +42,16 @@ ActiveRecord::Schema.define(version: 2021_05_31_125654) do
     t.index ["user_id"], name: "index_cards_on_user_id"
   end
 
+  create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "content"
+    t.bigint "troom_id"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["troom_id"], name: "index_messages_on_troom_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "room_orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "room_id"
@@ -65,6 +75,22 @@ ActiveRecord::Schema.define(version: 2021_05_31_125654) do
     t.index ["user_id"], name: "index_rooms_on_user_id"
   end
 
+  create_table "troom_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "troom_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["troom_id"], name: "index_troom_users_on_troom_id"
+    t.index ["user_id"], name: "index_troom_users_on_user_id"
+  end
+
+  create_table "trooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "room_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["room_id"], name: "index_trooms_on_room_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.text "introduction", null: false
@@ -81,7 +107,12 @@ ActiveRecord::Schema.define(version: 2021_05_31_125654) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "cards", "users"
+  add_foreign_key "messages", "trooms"
+  add_foreign_key "messages", "users"
   add_foreign_key "room_orders", "rooms"
   add_foreign_key "room_orders", "users"
   add_foreign_key "rooms", "users"
+  add_foreign_key "troom_users", "trooms"
+  add_foreign_key "troom_users", "users"
+  add_foreign_key "trooms", "rooms"
 end

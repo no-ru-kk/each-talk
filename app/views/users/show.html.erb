@@ -61,7 +61,7 @@
   <ul class='item-lists'>
     <% @room.each do |room| %>
       <li class='list'>
-        <%= link_to "#" do %>
+        <%= link_to troom_messages_path(room.id), method: :get do %>
 
         <% if room.image.attached? %>
         <div class='item-img-content'>
@@ -104,7 +104,7 @@
   <ul class='sroom-lists'>
     <% @eroom.each do |room| %>
       <li class='slist'>
-        <%= link_to "#" do %>
+        <%= link_to troom_messages_path(room.id), method: :get do %>
 
         <% if room.image.attached? %>
         <div class='sroom-img-content'>

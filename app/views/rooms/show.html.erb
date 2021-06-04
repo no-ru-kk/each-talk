@@ -37,9 +37,6 @@
       <span class="item-price">
         <%= @room.rtime.name %>　¥<%= @room.price.to_s(:delimited) %>
       </span>
-      <%# <span class="item-postage">
-         <%= @room.rtime.name %>
-      <%# </span> %>
     </div>
 
     <% if user_signed_in? && @room.room_order == nil %>
