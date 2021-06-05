@@ -12,10 +12,11 @@ class MessagesController < ApplicationController
   end
 
   def create
+    @room = Room.find(params[:room_id])
     @troom = Troom.find(params[:troom_id])
     @message = @troom.messages.new(message_params)
     if @message.save
-      redirect_to room_troom_messages_path(@troom)
+      redirect_to room_troom_messages_path(@room, @troom)
     else
       @messages = @troom.messages.includes(:user)
       render :index
