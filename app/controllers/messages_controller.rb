@@ -2,7 +2,7 @@ class MessagesController < ApplicationController
   
   def index
     @message = Message.new
-    @room = Room.find(params[:troom_id])
+    @room = Room.find(params[:room_id])
     unless @room.room_order != nil 
       redirect_to user_path(current_user.id)
     else
@@ -15,7 +15,7 @@ class MessagesController < ApplicationController
     @troom = Troom.find(params[:troom_id])
     @message = @troom.messages.new(message_params)
     if @message.save
-      redirect_to troom_messages_path(@troom)
+      redirect_to room_troom_messages_path(@troom)
     else
       @messages = @troom.messages.includes(:user)
       render :index
