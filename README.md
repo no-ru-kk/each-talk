@@ -7,6 +7,11 @@
   https://each-talk.herokuapp.com/
 
 ## テスト用アカウント
+### Basic認証
+- ID: admin
+- pass: 1982
+
+
 ### 出品者用アカウント
 - ID: sample@gmail.com
 - pass:2021tech
