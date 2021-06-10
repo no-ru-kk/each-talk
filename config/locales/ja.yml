@@ -1,4 +1,16 @@
 ja:
-  time:
-    formats:
-      default: "%Y/%m/%d %H:%M:%S"
+  activerecord:
+    attributes:
+      user:
+        name: 名前
+        introduction: 自己紹介
+      room:
+        name: Roomの名前 
+        rexplain: Roomの紹介 
+        dayotw_id: トーク可能日
+        rtime_id: トーク時間
+        htime_id: 時間
+        mtime_id: 分
+        price: 価格
+      card:
+        card_token: カード番号
