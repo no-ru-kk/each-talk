@@ -2,48 +2,43 @@ a {
   text-decoration: none;
 }
 
+.in-header{
+  
+}
+
 .main {
   background: #f8f8f8;
+  
 }
 
 /* 画面上部の「人生を変えるフリマアプリ」帯部分 */
-.title-contents {
-  width: 100vw;
-  background-image: image-url('furima-header01.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: top center;
+.top-main{
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 5vh 15vw;
-  color: #fff;
-  text-shadow: 0 0 5px rgba(0, 0, 0, 0.9);
 }
 
-.service-title {
-  font-size: 8vh;
+.top-left{
+  width :50vw;
+  height: 420px;
+  background-image: image-url('4932131_s.jpg');
 }
 
-.service-explain {
-  font-size: 2.5vh;
-  line-height: 40px;
+.top-right{
+  width : calc( 100% - 50vw);
+  height: 420px;
+  padding: 40px;
+  background-color: pink;
 }
 
-.store-btn {
-  display: flex;
-  margin-top: 24px;
+.m-content{
+  font-size: 6vh;
+  color: white;
 }
 
-.apple-btn {
-  margin-right: 1vw;
-  height: 9vh;
+.service-explain{
+  margin-top: 20px;
+  color: white;
 }
 
-.google-btn {
-  height: 9vh;
-}
 
 /* //画面上部の「人生を変えるフリマアプリ」帯部分 */
 
@@ -220,7 +215,7 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10vh 0;
+  padding: 30px 0;
 }
 
 .item-contents>.title {
@@ -233,7 +228,7 @@ a {
   font-size: 3vh;
   margin: 1vh 0;
   text-decoration: none;
-  color: #3ccace;
+  color: #ffcc66;
   font-weight: bold;
 }
 
@@ -258,7 +253,9 @@ a {
 .item-img {
   width: 33vh;
   height: 33vh;
+  border-radius: 50%;
 }
+
 .room-name{
   position: absolute;
   top: 0%;
@@ -273,7 +270,7 @@ a {
   top: 40%;
   width: 100%;
   text-align: center;
-  background-color: crimson;
+  background-color:#ffcc66;
   transform: skewY(10deg);
 }
 
@@ -292,10 +289,11 @@ a {
 
 .item-name {
   font-size: 2.5vh;
+  
 }
 
 .item-price {
-  font-size: 1.5vh;
+  font-size: 13px;
   display: flex;
   justify-content: space-between;
 }
@@ -317,3 +315,45 @@ a {
 }
 
 /* //商品一覧 */
+
+.site-header {
+  width: 100%;
+  height: 60px;
+  background-color: #ffcc66;
+  padding: 10px 0;
+  display: flex;
+}
+
+.title{
+  display: block;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.heading {
+  width: 50%;
+  margin-left: 30px;
+}
+
+.navbar {
+  width: 50%;
+  padding: 10px;
+}
+
+.nav-lists {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+li {
+  list-style: none;
+}
+
+a:link {
+  color:black;
+}
+
+a:visited {
+  color:black;
+}

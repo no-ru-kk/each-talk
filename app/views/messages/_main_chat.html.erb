@@ -1,27 +1,27 @@
-<div class="chat-header">
-  <div class="left-header">
-    <div class="header-title">
+<div class="mchat-header">
+  <div class="mleft-header">
+    <div class="mheader-title">
       説明：<%= @room.rexplain %>
     </div>
   </div>
-  <div class="right-header">
-    <div class="header-button">
+  <div class="mright-header">
+    <div class="mheader-button">
       <%= link_to "マイページへ戻る", user_path(current_user.id) %>
     </div>
   </div>
 </div>
 
-<div class="messages">
+<div class="mmessages">
   <%= render partial: 'message', collection: @messages %>
 </div>
 
-<%= form_with model: [@room, @troom, @message], class: 'form', local: true do |f| %>
-  <div class="form-input">
-    <%= f.text_field :content, class: 'form-message', placeholder: 'type a message' %>
-    <label class="form-image">
-      <span class="image-file">画像</span>
+<%= form_with model: [@room, @troom, @message], class: 'mform', local: true do |f| %>
+  <div class="mform-input">
+    <%= f.text_field :content, class: 'mform-message', placeholder: 'type a message' %>
+    <label class="mform-image">
+      <span class="mimage-file">画像</span>
       <%= f.file_field :image, class: 'hidden' %>
     </label>
   </div>
-  <%= f.submit '送信', class: 'form-submit' %>
+  <%= f.submit '送信', class: 'mform-submit' %>
 <% end %>

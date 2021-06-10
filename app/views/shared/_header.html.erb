@@ -1,20 +1,11 @@
 <%# CSS・・・assets/stylesheets/shared/header.css %>
-<header class='top-page-header'>
-  <div class='search-bar-contents'>
-    <%= link_to image_tag("furima-logo-color.png", class:"furima-icon"), "/" %>
-    <form class="search-form" action="#">
-      <input class='input-box' placeholder='キーワードから探す'>
-      <button class="search-button">
-        <%= image_tag "search.png", class:"search-icon" %>
-      </button>
-    </form>
+<header class="site-header" >
+  <div class="heading">
+    <h1><%= link_to 'Each Talk', root_path, class: "title" %></h1>
   </div>
-  <div class='nav'>
-    <ul class='lists-left'>
-      <li><%= link_to 'カテゴリー', "#", class: "category-list" %></li>
-      <li><%= link_to 'ブランド', "#", class: "brand-list" %></li>
-    </ul>
-    <ul class='lists-right'>
+  <div class="navbar">
+    <ul class="nav-lists">
+      <li><%= link_to 'room作成', new_room_path, class: "make-room" %></li>
       <% if user_signed_in? %>
         <li><%= link_to current_user.name, user_path(current_user), class: "user-nickname" %></li> 
         <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "logout" %></li>  
