@@ -10,9 +10,9 @@
 }
 
 .search-bar-contents {
-  display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 20px;
 }
 
 .furima-icon {
@@ -37,7 +37,7 @@
   width: 5vh;
   border: 0;
   cursor: pointer;
-  background-color: #3ccace;
+  background-color: #ffcc66;
   padding: 8px;
 }
 
@@ -77,12 +77,22 @@
   align-items: flex-end;
 }
 
+.make-room {
+  text-decoration: none;
+  margin-right: 3vw;
+  color: #333333;
+  font-weight: bold;
+  border: 1px solid black;
+  padding: 10px;
+}
 
 .user-nickname {
   text-decoration: none;
   margin-right: 3vw;
   color: #333333;
   font-weight: bold;
+  border-bottom: 1px solid black;
+  padding-bottom: 5px;
 }
 
 
