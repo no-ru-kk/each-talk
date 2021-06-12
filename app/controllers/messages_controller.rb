@@ -8,6 +8,7 @@ class MessagesController < ApplicationController
     else
       @troom = Troom.find(params[:troom_id])
       @messages = @troom.messages.includes(:user)
+      judge_user
     end
   end
 
@@ -28,4 +29,11 @@ class MessagesController < ApplicationController
   def message_params
     params.require(:message).permit(:content, :image).merge(user_id: current_user.id)
   end
+
+  def judge_user
+    unless current_user.id == @room.user_id || current_user.id == @room.room_order.user_id
+      redirect_to root_path
+    end
+  end
 end
+
