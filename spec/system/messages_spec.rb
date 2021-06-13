@@ -1,27 +1,38 @@
 require 'rails_helper'
 
+def basic_pass(path)
+  username = ENV["BASIC_AUTH_USER"] 
+  password = ENV["BASIC_AUTH_PASSWORD"]
+  visit "http://#{username}:#{password}@#{Capybara.current_session.server.host}:#{Capybara.current_session.server.port}#{path}"
+end
+
 RSpec.describe 'メッセージ投稿機能', type: :system do
   before do
-    # 中間テーブルを作成して、usersテーブルとtroomsテーブルのレコードを作成する
-    # @troom_user = FactoryBot.create(:troom_user)
-    @user = FactoryBot.create(:user)
-    @room = FactoryBot.create(:room)
-    @troom = FactoryBot.create(:troom)
+    @troom_user = FactoryBot.build(:troom_user)
+    @user = FactoryBot.build(:user)
+    @room = FactoryBot.build(:room)
+    @troom = FactoryBot.build(:troom)
   end
 
   context '投稿に失敗したとき' do
     it '送る値が空の為、メッセージの送信に失敗すること' do
+      # 予め、room情報と中間テーブルをDBに保存する
+      @room = FactoryBot.create(:room)
+      @troom_user = FactoryBot.create(:troom_user)
+      # トップページに移動する
+      basic_pass root_path
       # サインインする
       sign_in(@room.user)
-
-      # 作成されたチャットルームへ遷移する
-      click_on(@troom)
-
+      # マイページへ遷移する
+      visit user_path(@user.id)
+      # マイページに購入したroomが表示されていることを確認する
+      expect(page).to have_content(@room.name)
+      # 購入したroomをクリックする
+      click_on(@room.name)
       # DBに保存されていないことを確認する
       expect{
         find('input[name="commit"]').click
       }.not_to change { Message.count }
-
       # 元のページに戻ってくることを確認する
       expect(current_path).to eq(room_troom_messages_path(@room, @troom))
     end
