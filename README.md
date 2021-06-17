@@ -100,7 +100,7 @@ Each Talkは話を聞きたい人、話を聞いて欲しい人をマッチン�
 ## 開発環境
 - フロントエンド：HTML5/CSS(Bootstrap)/JavaScript/jQuery/Ajax
 - バックエンド：Ruby on Rails(6.0.0)/Ruby(2.6.5)/JavaScript
-- テスト：RSpec(結合テスについては外部API実装によるmockの関係でまだ途中です)
+- テスト：RSpec(結合テストについては外部API実装によるmockの関係でまだ途中です)
 - Linter：Rubocop
 - データベース：MySQL(5.6.50)/Sequel Pro
 - インフラ：Heroku
