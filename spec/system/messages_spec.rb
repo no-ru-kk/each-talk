@@ -26,7 +26,7 @@ RSpec.describe 'メッセージ投稿機能', type: :system do
       # マイページへ遷移する
       visit user_path(@user.id)
       # マイページに購入したroomが表示されていることを確認する
-      expect(page).to have_content(@room.name)
+      expect(page).to have_content(@troom_user.room.name)
       # 購入したroomをクリックする
       click_on(@room.name)
       # DBに保存されていないことを確認する

@@ -78,13 +78,13 @@ Each Talkは話を聞きたい人、話を聞いて欲しい人をマッチン�
 - メッセージ機能
 [![Image from Gyazo](https://i.gyazo.com/fa29d58acbc2114eda205ab758197909.gif)](https://gyazo.com/fa29d58acbc2114eda205ab758197909)
 
-## データベース設計	ER図等を添付。
+## データベース設計	ER図
 [![Image from Gyazo](https://i.gyazo.com/91d00ffed7565262fb4c55e021321ac4.png)](https://gyazo.com/91d00ffed7565262fb4c55e021321ac4)
 
 ## 工夫したところ
-外部APIであるPayjpをウィザード式でユーザー登録をできるように行った。
-購入すると同時にトークルームを作成するため、購入とルーム作成を同時処理を行えるようにした。
-マイページに購入したroomの履歴、出品したものがそのユーザーに紐づいて表示できるようにした。
+- 外部APIであるPayjpをウィザード式でユーザー登録をできるように行った。
+- 購入すると同時にトークルームを作成するため、購入とルーム作成を同時処理を行えるようにした。
+- マイページに購入したroomの履歴、出品したものがそのユーザーに紐づいて表示できるようにした。
 
 ## ローカルでの動作方法
 - % git clone https://github.com/no-ru-kk/each-talk.git  
@@ -100,7 +100,7 @@ Each Talkは話を聞きたい人、話を聞いて欲しい人をマッチン�
 ## 開発環境
 - フロントエンド：HTML5/CSS(Bootstrap)/JavaScript/jQuery/Ajax
 - バックエンド：Ruby on Rails(6.0.0)/Ruby(2.6.5)/JavaScript
-- テスト：RSpec
+- テスト：RSpec(結合テスについては外部API実装によるmockの関係でまだ途中です)
 - Linter：Rubocop
 - データベース：MySQL(5.6.50)/Sequel Pro
 - インフラ：Heroku
