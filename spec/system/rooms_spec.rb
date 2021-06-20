@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-def basic_pass(path) #---❶
+def basic_pass(path)
   username = ENV["BASIC_AUTH_USER"] 
   password = ENV["BASIC_AUTH_PASSWORD"]
   visit "http://#{username}:#{password}@#{Capybara.current_session.server.host}:#{Capybara.current_session.server.port}#{path}"
@@ -78,7 +78,7 @@ RSpec.describe "Rooms", type: :system do
     it 'ログインしたユーザーは自分が出品したroomの編集ができる' do
       # roomを出品したユーザーでログインする
       sign_in(@room.user)
-      # 投稿詳細ページへ遷移する
+      # room詳細ページへ遷移する
       visit room_path(@room)
       # 遷移したページに「編集」へのリンクがあることを確認する
       expect(page).to have_link 'Edit', href: edit_room_path(@room)
@@ -112,25 +112,25 @@ RSpec.describe "Rooms", type: :system do
     it 'ログインしたユーザーは自分以外が出品した投稿の編集画面には遷移できない' do
       # 予め、room2をDBに保存する
       @room2 = FactoryBot.create(:room)
-      # roomを投稿したユーザーでログインする
+      # roomを出品したユーザーでログインする
       sign_in(@room.user)
-      # roomを投稿したユーザーでログインする
+      # roomを出品したユーザーでログインする
       sign_in(@room.user)
-      # 投稿2の投稿詳細ページへ遷移する
+      # room2の詳細ページへ遷移する
       visit post_path(@post2)
-      # 投稿2に「編集」へのリンクがないことを確認する
+      # room2に「編集」へのリンクがないことを確認する
       expect(page).to have_no_link 'Edit', href: edit_post_path(@post2)
     end
     it 'ログインしていないと投稿の編集画面には遷移できない' do
       # トップページにいる
       visit root_path
-      # 投稿1の詳細ページへ遷移する
+      # room1の詳細ページへ遷移する
       visit post_path(@post1)
-      # 投稿1に「編集」へのリンクがないことを確認する
+      # room1に「編集」へのリンクがないことを確認する
       expect(page).to have_no_link 'Edit', href: edit_post_path(@post1)
-      # 投稿2の詳細ページへ遷移する
+      # room2の詳細ページへ遷移する
       visit post_path(@post2)
-      # 投稿2に「編集」へのリンクがないことを確認する
+      # room2に「編集」へのリンクがないことを確認する
       expect(page).to have_no_link 'Edit', href: edit_post_path(@room2)
     end
   end
@@ -166,39 +166,36 @@ RSpec.describe "Rooms", type: :system do
   end
   context 'roomの削除ができないとき' do
     it 'ログインしたユーザーは自分以外が投稿した投稿の削除ができない' do
-      # 投稿1を投稿したユーザーでログインする
+      # 事前にroom1、room2を作成する
+      @room1 = FactoryBot.create(:room)
+      @room2 = FactoryBot.create(:room)
+      # room1を投稿したユーザーでログインする
       visit new_user_session_path
-      fill_in 'メールアドレス', with: @post1.user.email
-      fill_in 'パスワード', with: @post1.user.password
+      fill_in 'メールアドレス', with: @room1.user.email
+      fill_in 'パスワード', with: @room1.user.password
       find('input[name="commit"]').click
       expect(current_path).to eq(root_path)
-      # 投稿2の詳細ページへ遷移する
+      # room2の詳細ページへ遷移する
       visit post_path(@post2)
-      # 投稿2に「編集」へのリンクがないことを確認する
-      expect(page).to have_no_link 'Edit', href: edit_post_path(@post2)
+      # room2に「編集」へのリンクがないことを確認する
+      expect(page).to have_no_link 'Edit', href: edit_room_path(@room2)
     end
     it 'ログインしていないと投稿の削除ボタンがない' do
+      # 事前にroom1、room2を作成する
+      @room1 = FactoryBot.create(:room)
+      @room2 = FactoryBot.create(:room)
       # トップページに移動する
       visit root_path
-      # 投稿1の詳細ページへ遷移する
-      visit post_path(@post1)
-      # 投稿1に「編集」へのリンクがないことを確認する
-      expect(page).to have_no_link 'Edit', href: edit_post_path(@post1)
+      # room1の詳細ページへ遷移する
+      visit room_path(@room1)
+      # room1に「編集」へのリンクがないことを確認する
+      expect(page).to have_no_link 'Edit', href: edit_room_path(@room1)
       # トップページに移動する
       visit root_path
-      # 投稿2の詳細ページへ遷移する
-      visit post_path(@post2)
-      # 投稿2に「編集」へのリンクがないことを確認する
-      expect(page).to have_no_link 'Edit', href: edit_post_path(@post2)
+      # room2の詳細ページへ遷移する
+      visit room_path(@post2)
+      # room2に「編集」へのリンクがないことを確認する
+      expect(page).to have_no_link 'Edit', href: edit_room_path(@room2)
     end
   end
-end
-
-
-RSpec.describe 'room削除', type: :system do
-  before do
-    @room1 = FactoryBot.create(:room)
-    @room2 = FactoryBot.create(:room)
-  end
-
 end
