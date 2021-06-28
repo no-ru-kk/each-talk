@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   validates :name, presence: true, length: { maximum: 40 }
   validates :introduction, presence: true, length: { maximum: 100 }
-  # validates :password, format: {with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i, message: "は英数含めた半角6文字以上で入力ください"}
+  validates :password, format: {with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i, message: "は英数含めた半角6文字以上で入力ください"}
   # validates :password, format: {with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i, message: "is invalid. Input both half-width alphanumeric characters with 6 characters or more."}
 
   has_many :rooms
